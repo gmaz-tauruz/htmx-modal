@@ -1,0 +1,53 @@
+{% load widget_tweaks %}
+
+{% with WIDGET_ERROR_CLASS='is-invalid' %}
+<form hx-post="{{ request.path }}" class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title">Employee Form</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="modal-body">
+        <div class="form-floating mb-2">
+            {% render_field form.last_name class="form-control" placeholder="Last name" %}
+            <label for="{{ form.last_name.id_for_label }}" class="form-label">Last Name</label>
+            <div class="invalid-feedback">{{ form.last_name.errors|first }}</div>
+        </div>
+        <div class="form-floating mb-2">
+            {% render_field form.first_name class="form-control" placeholder="First name" %}
+            <label for="{{ form.first_name.id_for_label }}" class="form-label">First Name</label>
+            <div class="invalid-feedback">{{ form.first_name.errors|first }}</div>
+        </div>
+        <div class="form-floating mb-2">
+            {% render_field form.middle_name class="form-control" placeholder="Middle name" %}
+            <label for="{{ form.middle_name.id_for_label }}">Middle Name</label>
+            <div class="invalid-feedback">{{ form.middle_name.errors|first }}</div>
+        </div>
+        <div class="form-floating mb-2">
+            {% render_field form.birth_date class="form-control" placeholder="Birth date" %}
+            <label for="{{ form.birth_date.id_for_label }}">Birth date</label>
+            <div class="invalid-feedback">{{ form.birth_date.errors|first }}</div>
+        </div>
+        <div class="form-floating mb-2">
+            {% render_field form.gender class="form-select" placeholder="M/F" %}
+            <label for="{{ form.gender.id_for_label }}">Gender</label>
+            <div class="invalid-feedback">{{ form.gender.errors|first }}</div>
+        </div>
+        <div class="form-floating mb-2">
+            {% render_field form.description class="form-control" placeholder="placeholder" style='height: 150px' %}
+            <label for="{{ form.description.id_for_label }}">Description</label>
+            <div class="invalid-feedback">{{ form.description.errors|first }}</div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        {% if employee %}
+        <button type="submit" class="btn btn-danger" hx-confirm="Delete?" 
+            hx-delete="{% url 'employee-delete' pk=employee.pk %}">Delete</button>
+        <span class="flex-grow-1"></span>
+        {% endif %}
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>
+{% endwith %}

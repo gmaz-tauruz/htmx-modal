@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Employee list</h1>
+
+<div id="emp_list" hx-trigger="load, EmpListChanged from:body" hx-get="{% url 'employee-list' %}" hx-target="this">
+
+</div>
+
+{% endblock %}

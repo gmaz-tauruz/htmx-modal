@@ -1,0 +1,33 @@
+<table class="table table-striped table-hover table-md">
+    <thead>
+        <tr>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Middle Name</th>
+            <th>Birth Date</th>
+            <th>Gender</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for emp in employees %}
+        <tr>
+            <td>{{ emp.last_name }}</td>
+            <td>{{ emp.first_name }}</td>
+            <td>{{ emp.middle_name }}</td>
+            <td>{{ emp.birth_date }}</td>
+            <td>{{ emp.gender }}</td>
+            <td>{{ emp.description }}</td>
+            <td><button type="button" class="btn btn-primary btn-sm"
+                hx-get="{% url 'employee-edit' emp.pk %}" hx-target="#dialog">Edit</button></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+
+    </tfoot>
+</table>
+
+<button type="button" class="btn btn-primary"
+    hx-get="{% url 'employee-add' %}" hx-target="#dialog">Add</button>
