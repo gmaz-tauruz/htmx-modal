@@ -1,6 +1,7 @@
 *.sqlite3
-.env
-__pycache__/
+*.env
+*.log
+**__pycache__/
 *.py[cod]
 
 # C extensions
